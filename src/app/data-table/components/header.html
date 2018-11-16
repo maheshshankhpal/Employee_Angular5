@@ -1,0 +1,90 @@
+<!-- <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"/> -->
+
+<div class="data-table-header" style="padding-bottom:20px; ">
+
+  <h4 class="title" [textContent]="dataTable.headerTitle"></h4>
+  <div class="Add-button-panel" *ngIf="dataTable.IsAddButton">
+    <button tabindex="-1" (click)="dataTable.OnAddBtnClick()" style="background:transparent ; color: white;background-color: #136fb3;"
+      matTooltip="Add New" mat-button>
+      <i class="material-icons">
+        add_circle
+      </i>
+      Add New
+    </button>
+  </div>
+
+
+  <div class="button-panel">
+
+    <button *ngIf="dataTable.ExportToExcel" type="button" (click)="dataTable.OnExcelExport()" mat-mini-fab style="margin-left: 5px; background:transparent ; color: white;">
+      <img width="22" src="https://www.markating.nl/app/uploads/2016/06/excel-icon-small-22.png">
+    </button>
+
+    <button (click)="columnSelectorOpen = !columnSelectorOpen; $event.stopPropagation()" tabindex="-1" style="margin-left:10px; background:transparent ; color: white;background-color: #136fb3;"
+      matTooltip="Manage columns" mat-mini-fab>
+      <i class="material-icons">
+        settings
+      </i>
+    </button>
+
+  </div>
+  <div class="button-panel" style="width: 25%; margin-left: 10px;">
+    <input style="float: left;" [(ngModel)]="dataTable.searchText" placeholder="Search" class="form-control input-sm"
+      (keyup)="dataTable.search()" type="text">
+
+  </div>
+  <div *ngIf="dataTable.filterByTags" style="float: left; width: 20%; margin-left: 10px;">
+    <p-multiSelect 
+          [style]="{'width':'100%'}" [displaySelectedLabel]="true" [maxSelectedLabels]="2"
+          [options]="dataTable.TagListDropDownOptionData" 
+          (onChange)="dataTable.FilterChangeTags(dataTable.SelectedTagAltkeys)" 
+          [(ngModel)]="dataTable.SelectedTagAltkeys" [style]="{'width':'100%','height': '38px'}" filter="true" defaultLabel="Filter By Tags">
+    </p-multiSelect>
+  </div>
+  <div style="float: left; width: 30%; margin-left: 10px;">
+    <p-dropdown (onChange)="dataTable.setStateName(dataTable.SelectedState)" *ngIf="dataTable.StateDropDownOptionData != undefined" [options]="dataTable.StateDropDownOptionData"
+      [(ngModel)]="dataTable.SelectedState" placeholder="Filter By State" [style]="{'width':'100%','height': '40px'}" filter="true">
+      <ng-template let-item pTemplate="selectedItem">
+          {{item.label}}
+          <div style="float:right;margin-top: 2px;">
+            <span   (click)="dataTable.SelectedState = null;dataTable.setStateName(null)">
+              <i class="pi pi-times"></i>
+            </span>
+          </div>
+        </ng-template>
+        <ng-template let-ele pTemplate="item">
+          {{ele.label}}
+        </ng-template>
+    </p-dropdown>
+  </div>
+
+  <div class="column-selector-wrapper" (click)="$event.stopPropagation()">
+    <div *ngIf="columnSelectorOpen" class="column-selector-box panel panel-default">
+      <div *ngIf="dataTable.expandableRows" class="column-selector-fixed-column checkbox">
+        <label>
+          <mat-checkbox [(ngModel)]="dataTable.expandColumnVisible"></mat-checkbox>
+          <span>{{dataTable.translations.expandColumn}}</span>
+        </label>
+      </div>
+      <div *ngIf="dataTable.indexColumn" class="column-selector-fixed-column checkbox">
+        <label>
+          <mat-checkbox [(ngModel)]="dataTable.indexColumnVisible"></mat-checkbox>
+          <span>{{dataTable.translations.indexColumn}}</span>
+        </label>
+      </div>
+      <div *ngIf="dataTable.selectColumn" class="column-selector-fixed-column checkbox">
+        <label>
+          <mat-checkbox [(ngModel)]="dataTable.selectColumnVisible"></mat-checkbox>
+          <span>{{dataTable.translations.selectColumn}}</span>
+        </label>
+      </div>
+      <div *ngFor="let column of dataTable.columns" class="column-selector-column checkbox">
+        <label>
+          <mat-checkbox [(ngModel)]="column.visible"></mat-checkbox>
+          <span [textContent]="column.header"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+</div>

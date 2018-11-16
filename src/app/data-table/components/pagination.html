@@ -1,0 +1,58 @@
+<div class="pagination-box">
+  <div class="pagination-range">
+    {{dataTable.translations.paginationRange}}:
+    <span [textContent]="dataTable.offset + 1"></span>
+    -
+    <span [textContent]="[dataTable.offset + dataTable.limit , dataTable.itemCount] | min"></span>
+    /
+    <span [textContent]="dataTable.itemCount"></span>
+  </div>
+  <div class="pagination-controllers">
+    <div class="pagination-pages">
+      <div class="pagination-page">
+        <div class="input-group">
+          <div class="input-group-addon" >
+            <!-- <span>{{dataTable.translations.paginationLimit}}:</span> -->
+            <!-- <span [textContent]="dataTable.lastPage"></span> -->
+            Limit
+          </div>
+          <input #limitInput type="number"  style="top: -9px; width: 10px !important;" class="form-control" min="1" step="1" [ngModel]="limit" (blur)="limit = limitInput.value"
+            (keyup.enter)="limit = limitInput.value" (keyup.esc)="limitInput.value = limit" />
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination-pages">
+      <button color="primary" [disabled]="dataTable.offset <= 0" (click)="pageFirst()" mat-mini-fab>
+        <i class="material-icons">
+          first_page
+        </i>
+      </button>
+      <button color="primary" [disabled]="dataTable.offset <= 0" (click)="pageBack()" mat-mini-fab>
+        <i class="material-icons">
+          arrow_left
+        </i>
+      </button>
+      <div class="pagination-page">
+        <div class="input-group">
+          <input #pageInput type="number" class="form-control" min="1" step="1" max="{{maxPage}}" [ngModel]="page" (blur)="page = pageInput.value"
+            (keyup.enter)="page = pageInput.value" style="margin-left:9px;" (keyup.esc)="pageInput.value = page" />
+          <div class="input-group-addon" style="margin: 10px;">
+            <span>/</span>
+            <span [textContent]="dataTable.lastPage"></span>
+          </div>
+        </div>
+      </div>
+      <button color="primary" [disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" (click)="pageForward()" mat-mini-fab>
+        <i class="material-icons">
+          arrow_right
+        </i>
+      </button>
+      <button color="primary" [disabled]="(dataTable.offset + dataTable.limit) >= dataTable.itemCount" (click)="pageLast()" mat-mini-fab>
+        <i class="material-icons">
+          last_page
+        </i>
+      </button>
+    </div>
+  </div>
+</div>

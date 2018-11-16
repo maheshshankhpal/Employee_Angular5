@@ -1,0 +1,10 @@
+.d2kbutton {
+  background-color: #136fb3;
+  border-radius: 5px;
+  height: 39px;
+  margin-right: 20px;
+  color: white;
+  margin: 5px;
+}
+
+[hidden] { display: none; }

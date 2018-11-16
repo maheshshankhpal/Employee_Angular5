@@ -1,0 +1,15 @@
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    height: 27px;
+    width: 24px;
+}
+
+.d2kbutton {
+    background-color: #136fb3;
+  border-radius: 5px;
+  height: 39px;
+  color: white;
+    
+  }

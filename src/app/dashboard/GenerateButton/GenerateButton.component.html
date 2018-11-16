@@ -1,0 +1,58 @@
+<ngx-spinner type="line-scale"></ngx-spinner>
+
+<div>
+
+  <!-- <div>
+      <div class="ui-g-12 ui-md-6 ui-lg-3">
+          <label for="usr">Frequency</label>
+          <br>
+          <p-dropdown [disabled]="true" [style]="{'width':'100%'}" [options]="FrequencyMasterList" [(ngModel)]="Frequency"
+            (onChange)="BindTimekey(Frequency)"  
+            placeholder="Frequency" filter="true">
+            <ng-template let-item pTemplate="selectedItem">
+              {{item.label}}
+            </ng-template>
+          </p-dropdown>
+        </div>
+        <div class="ui-g-12 ui-md-6 ui-lg-3">
+          <label for="usr">Date</label>
+          <br>
+          <p-dropdown [disabled]="selectedReportId==null" [style]="{'width':'100%'}" [options]="TimekeyList" [(ngModel)]="TimekeyDt"
+            (onChange)="setTimekey(TimekeyDt)"  
+            placeholder="Date" filter="true">
+            <ng-template let-item pTemplate="selectedItem">
+              {{item.label}}
+              <div style="float:right;margin-top: 2px;">
+                <span (click)="fileUrl=null;TimekeyDt=null;Timekey=null;">
+                  <i class="pi pi-times"></i>
+                </span>
+              </div>
+            </ng-template>
+          </p-dropdown>
+        </div>
+  </div> -->
+
+  <div class="ui-g-12 ui-md-12 ui-lg-12">
+
+
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="form-group-footer" style="margin-top: 5px;">
+        <div class="col-sm-12 col-md-12 col-lg-12 text-center">
+          <div class="button-row">
+            <button mat-button (click)="onProcess()" class="d2kbutton" color="primary" ng-reflect-color="primary">
+              <mat-icon class="mat-icon material-icons right">send</mat-icon>
+              <span>PROCESS</span>
+            </button>
+            <a href="{{fileUrl}}" *ngIf="fileUrl!=null" style="background:transparent ; color: white;background-color: #136fb3;" mat-icon-button
+              matTooltip="Download Excel template" target="_blank">
+              <mat-icon aria-label="Example icon-button with a heart icon">cloud_download</mat-icon>
+            </a>
+            <div class="clearfix"></div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
